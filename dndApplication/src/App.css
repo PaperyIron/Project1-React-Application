@@ -1,36 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: linear-gradient(135deg, #E8DCC8 0%, #D2B48C 100%);
+  background-attachment: fixed;
+}
+
+body {
+  background: linear-gradient(135deg, #E8DCC8 0%, #D2B48C 100%);
+  background-attachment: fixed;
+  color: #3E3E3E;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+h1 {
   text-align: center;
-  
+  color: #2C3E2E;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Form Styling */
+.race-selection {
+  background: linear-gradient(145deg, #F5EFE0 0%, #EBE2CC 100%);
+  border: 2px solid #C9A961;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 16px rgba(62, 62, 62, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.race-selection label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #556B2F;
+  font-weight: 600;
 }
 
 #search-bar {
-  min-width: 500px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #C9A961;
+  border-radius: 8px;
+  background: #FDFBF7;
+  color: #3E3E3E;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(62, 62, 62, 0.1);
 }
 
-#search-bar-label {
-  display: flex;
-  flex-direction: column;
+#search-bar:focus {
+  outline: none;
+  border-color: #4682B4;
+  box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.2), inset 0 2px 4px rgba(62, 62, 62, 0.1);
+  background: #FFFFFF;
 }
 
 #search-button {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(145deg, #4682B4 0%, #3A6D9C 100%);
+  color: #F5EFE0;
+  border: 2px solid #3A6D9C;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #f6f2f2;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-#search-button:hover {
-  border-color: #646cff;
-}
-#search-button:focus,
-#search-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(62, 62, 62, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+#search-button:hover {
+  background: linear-gradient(145deg, #5A92C4 0%, #4682B4 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(62, 62, 62, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #C9A961;
+}
+
+#search-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(62, 62, 62, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading and Error Styles */
+p {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+#error {
+  background: rgba(139, 35, 35, 0.1);
+  border: 2px solid #8B4513;
+  border-radius: 8px;
+  color: #8B4513;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* Race Info Container */
+.raceInfo {
+  background: linear-gradient(145deg, #F5EFE0 0%, #EBE2CC 100%);
+  border: 2px solid #C9A961;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(62, 62, 62, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  animation: fadeIn 0.5s ease;
+}
+
+.raceInfo h2 {
+  color: #2C3E2E;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 3px solid #C9A961;
+  padding-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.raceInfo h3 {
+  color: #4682B4;
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+  border-left: 4px solid #4682B4;
+  padding-left: 12px;
+}
+
+.raceInfo > div {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(253, 251, 247, 0.6);
+  border-radius: 8px;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  box-shadow: inset 0 1px 3px rgba(62, 62, 62, 0.1);
+}
+
+.raceInfo p {
+  text-align: left;
+  line-height: 1.7;
+  color: #3E3E3E;
+  font-size: 1rem;
+}
+
+.raceInfo strong {
+  color: #556B2F;
+  font-weight: 600;
+}
+
+/* Traits Section */
+.traits {
+  background: #FAF6EB !important;
+}
+
+.trait-item {
+  background: linear-gradient(145deg, #FAF6EB 0%, #F0E8D8 100%);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid #C9A961;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(62, 62, 62, 0.15);
+}
+
+.trait-item:last-child {
+  margin-bottom: 0;
+}
+
+.trait-name {
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .race-selection,
+  .raceInfo {
+    padding: 1.5rem;
+  }
+
+  .raceInfo h2 {
+    font-size: 1.8rem;
+  }
+
+  .raceInfo h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .race-selection,
+  .raceInfo {
+    padding: 1rem;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #D2B48C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A961;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8975A;
+}
