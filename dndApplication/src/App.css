@@ -32,6 +32,12 @@ h1 {
   letter-spacing: 1px;
 }
 
+img {
+  display: block;
+  height: 200px;
+  margin: auto;
+}
+
 /* Form Styling */
 .race-selection {
   background: linear-gradient(145deg, #F5EFE0 0%, #EBE2CC 100%);

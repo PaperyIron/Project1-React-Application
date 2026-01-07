@@ -52,11 +52,15 @@ function App() {
 
   return (
     <>
+      <img src='/logo.svg' alt="Logo letters 'DND' with a tiny mouse on top"/>
       <h1>Get Race Information for Your DND Character</h1>
      
       <form onSubmit={handleSubmit} className="race-selection">
+        
         <label id='search-bar-label'>Start typing to find your race</label>
         <input type='search' list='races' id='search-bar' value={selectedRace} onChange={(e) => setSelectedRace(e.target.value)} autoFocus placeholder='click again to see all options'></input>
+        
+        {/* Provide all accessible races from the API */}
         <datalist id='races'>
           <option value='Dragonborn' />
           <option value='Dwarf' />
@@ -68,26 +72,37 @@ function App() {
           <option value='Human' />
           <option value='Tiefling' />
         </datalist>
+        
         <button type='submit' id='search-button'>Search</button>
+      
       </form>
       
+      {/* only show when state is true */}
       { isLoading && <p>Loading data...</p> }
       { error && <p id='error'>Error: {error} </p>}
+      
       { raceData && (
         <div className='raceInfo'>
+          
           <h2>{raceData.name}</h2>
+          
           <div className='alignment'>
             <h3>Alignment</h3>
             <p>{raceData.alignment}</p>
           </div>
+          
           <div className='size'>
             <h3>Size</h3>
             <p><strong>{raceData.size}</strong>: {raceData.size_description}</p>
           </div>
+          
           <div className='languages'>
             <h3>Languages</h3>
+            {/* Combine array of languages into a single line separated by commas */}
             <p><strong>{raceData.languages.map(language => language.name).join(', ')}</strong> - {raceData.language_desc}</p>
           </div>
+          
+          {/* If race traits exist, map them onto individual containers with a description */}
           {raceData.traits.length > 0 && (
             <div className='traits'>
               <h3>Traits</h3>
@@ -100,14 +115,18 @@ function App() {
               </div>
             </div>
           )}
+          
+          {/* If subraces exist and not empty, join togethen and seperate by commas */}
           {raceData.subraces && raceData.subraces.length > 0 && (
           <div className='subraces'>
             <h3>Subraces</h3>
               <p>{raceData.subraces.map(subrace => subrace.name).join(', ')}</p>
           </div>
           )}
+        
         <div className='ability-bonus'>
           <h3>Ability Bonuses</h3>
+          {/* Combine with commas */}
           <p>{raceData.ability_bonuses.map(bonus =>
             `${bonus.ability_score.name}: +${bonus.bonus}`
           ).join(', ')}
@@ -121,17 +140,3 @@ function App() {
 
 export default App
 
-
-
-
-
-
-
-
- {/* <div className='traits'>
-            <h3>Traits</h3>
-            {raceData.traits.map((trait, index) => (
-              <p key={index}>{trait.name}</p>
-            ))}
-            )))}
-          </div> */}
